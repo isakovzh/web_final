@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Borrower Edit</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+</head>
+<body>
+<form method="post" th:action="@{/borrower/edit/{id}}" action="/borrower/edit/{id}" th:object="${borrower}">
+
+<div class="notification is-grey-light has-text-centered">
+     <label class="label">ID</label>
+  <input class="input" type="number" name="id" th:value="${borrower.id}">
+  <label class="label">Name</label>
+ <input class="input" type="text" name="name" th:value="${borrower.name}">
+  <label class="label">Email</label>
+  <input  class="input" type="text" name="email" th:value="${borrower.email}">
+  <label class="label">Phone</label>
+ <input  class="input" type="text" name="phone" th:value="${borrower.phone}">
+  <label class="label">Book</label>
+  <div class="select is-medium">
+    <select  name="borrowersBook">
+    <tr th:each="book : ${books}">
+      <option  th:value="${book.title}" th:text="${book.title}"></option>
+    </tr>
+  </select>
+  </div>
+</div>
+
+
+  <div class="has-text-right">
+    <button class="button is-link" type="submit">Add +</button>
+  </div>
+</form>
+
+</body>
+</html>

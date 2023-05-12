@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+    <nav aria-label="main navigation" class="navbar is-info" role="navigation">
+
+        <div class="navbar-menu" id="navbarBasicExample">
+            <div class="navbar-item ">
+                <a class="button is-info" th:href="@{/borrower/search/}">Search &#128270;</a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a style="margin-left: 15px;" class="button is-info"
+                       th:href="@{/borrower/}">Borrower
+                    </a>
+                </div>
+                    <div class="navbar-item">
+                    <a class="button is-info" th:href="@{/create}">Create</a>
+                    </div>
+            </div>
+        </div>
+    </nav>
+</head>
+<body>
+
+<section class="section ">
+    <div class="columns is-centered">
+        <div class="column is-narrow">
+            <table class="table has-text-centered is-stripped is-centered ">
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Published</th>
+                    <th>ISBN</th>
+                    <th> Edit</th>
+                    <th> Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="booki : ${book}">
+                    <td th:text="${booki.id}"></td>
+                    <td th:text="${booki.title}"></td>
+                    <td th:text="${booki.author}"></td>
+                    <td th:text="${booki.publisher}"></td>
+                    <td th:text="${booki.ISBN}"></td>
+
+                    <td><a th:href="@{/edit/{id}(id=${booki.id})}">Edit</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${booki.id})}" th:method="get">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

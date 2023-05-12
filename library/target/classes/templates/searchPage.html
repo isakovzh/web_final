@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Searching...</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+</head>
+<body class="body is-success">
+
+
+<div class="container  is-fullhd  has-text-centered">
+    <div class="notification is-grey-lighter">
+    <h4 align="center">Search in Thymeleaf Template</h4>
+    <form th:action="@{/search}" method="get">
+        <input class="input is-small is-rounded mb-4" type="text" name="keyword" th:value="${keyword}"  placeholder="Find Title & Author" size="80" >
+        <button  type="submit" class="button is-outlined is-success" >Search</button>
+        <button  type="submit" class="button is-success" >Reset</button>
+
+
+
+    </form>
+
+    <table class="table mt-5 is-striped  is-fullwidth ">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>ISBN</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="l : ${list}" th:field="${l}">
+            <td th:text="${lStat.index+1}"></td>
+            <td th:text="${l.title}"></td>
+            <td th:text="${l.author}"></td>
+            <td th:text="${l.publisher}"></td>
+            <td th:text="${l.ISBN}"></td>
+            <td>
+                <a th:href="@{/edit/{id}(id=${l.id})}" >Edit<i class="success" ></i></a>
+            </td>
+            <td><a th:href="@{/delete/{id}(id=${l.id})}" >Delete<i class="danger"></i></a></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+</body>
+</html>

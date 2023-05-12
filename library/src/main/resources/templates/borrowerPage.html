@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Borrower Page</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">  <nav class="navbar is-success" role="navigation" aria-label="main navigation">
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-outlined"
+             th:href="@{/}">I'M AUTHOR!
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</head>
+<body>
+
+
+<div >
+  <form method="post" action="/borrower/" th:action="@{/borrower/}" th:object="${borrower}" >
+
+
+    <div class="notification is-rounded is-cream  mb-5 is-striped  is-fullwidth">
+      <label class="label has-text-centered ">Name</label>
+      <input class="input" type="text" name="name">
+      <label class="label has-text-centered ">Email</label>
+      <input class="input" type="text" name="email">
+      <label class="label has-text-centered ">Phone</label>
+
+      <input class="input" type="text" name="phone">
+      <label class="label has-text-centered ">Book</label>
+        <select class="input" name="borrowersBook">
+          <tr th:each="book : ${books}">
+          <option th:value="${book.title}" th:text="${book.title}"></option>
+          </tr>
+        </select>
+    </div>
+
+
+    <div class="has-text-right">
+      <button class="button is-success is-inlined" type="submit">Add +</button>
+    </div>
+  </form>
+
+  <div class="section ">
+    <div class="columns is-centered">
+      <div class="column is-narrow">
+  <table class="table has-text-centered" >
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Book</th>
+      <th> Edit</th>
+      <th> Delete</th>
+    </tr>
+    </thead>
+    <tbody><tr th:each="booki : ${borrower}">
+    <td th:text="${booki.id}">id:</td>
+
+    <td th:text="${booki.name}">name:</td>
+
+    <td th:text="${booki.email}">email:</td>
+
+    <td th:text="${booki.phone}">phone:</td>
+
+    <td th:text="${booki.borrowersBook}">the book:</td>
+
+      <td><a class="nameAclass" th:href="@{/borrower/edit/{id}(id=${booki.id})}">Edit</a></td>
+      <td><a th:method="get" class="nameAclass" th:href="@{/borrower/delete/{id}(id=${booki.id})}">Delete</a></td>
+    </tr>
+    <tbody>
+  </table>
+
+
+
+
+</div>
+    </div>
+  </div>
+  </div>
+
+</body>
+</html>
