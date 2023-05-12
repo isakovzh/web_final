@@ -1,0 +1,33 @@
+<html >
+<html>
+    <head> 
+      <link th:href="@{css/inventory-stylesheet.css}" rel="stylesheet" />
+    </head>    
+    <body>
+    
+        <div class="topnav">
+            <a  th:href="@{/}" >Home</a>
+        </div>
+
+      
+        <div class="container">
+           <table>
+              <tr class="head">
+                 <th>Category</th>
+                 <th>Name</th>
+                 <th>start</th>
+                 <th>end</th>
+                 <th>Order Date</th>
+              </tr>
+              <tr th:each="item : ${items}">
+                 <td th:text="${item.category}">Furniture</th>
+                 <td th:text="${item.name}">Table</td>
+                 <td th:text="${item.begin}">2342.34</td>
+                 <td th:text="${item.end}">1657.23</td>
+                 <td th:text="${#dates.format(item.date, 'yyy-MM-dd')}">1996-02-02</td>
+                
+              </tr>
+           </table>
+        </div>
+   </body>
+</html>
